@@ -53,25 +53,14 @@ float random (vec2 st) {
 
 void main() {
 
-    vec2 uv = vUv;
+    vec2 uv = vUv * 10.0;
+    float noise = cnoise(uv + sin(uTime));
 
-    uv.x -= uCursorX * 0.02;
-    uv.y -= uCursorY * 0.02;
 
-    float noise = cnoise(uv + uTime * 0.5);
-    vec3 color = vec3(noise + 0.5, noise + 0.2 , noise - 0.5);
-    
-    // Option 2
-    // float noise = cnoise(uv + uTime * 0.1) * 5.0;
-    // vec3 color = vec3(noise - 0.2, noise , noise - 0.5);
-    
-    color += random(uTime * uv - 10.2) * 0.15;
 
-    gl_FragColor.rgb = color;
-    gl_FragColor.r += uv.x - 0.5;
-    gl_FragColor.g += uv.y - 0.5;
-    // gl_FragColor.g += uCursorY;
+    vec3 color = vec3(noise, noise , noise);
 
-    // gl_FragColor.rgb = vec3(0.8, 0.7, 1.0) + 0.3 * cos(vUv.xyx + uTime);
-    gl_FragColor.a = 1.0;
+
+
+    gl_FragColor = vec4(color, 1.0);
 }
