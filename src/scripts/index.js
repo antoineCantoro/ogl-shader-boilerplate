@@ -1,7 +1,7 @@
 import { Renderer, Geometry, Program, Mesh } from 'ogl';
 
-import fragment from '../shaders/03/fragment.glsl'
-import vertex from '../shaders/03/vertex.glsl'
+import fragment from '../shaders/02/fragment.glsl'
+import vertex from '../shaders/02/vertex.glsl'
 
 
 class App {
@@ -16,6 +16,7 @@ class App {
         this.createMesh()
         this.addListeners()
         this.getScreenSize()
+        this.onResize()
         requestAnimationFrame(this.update.bind(this))
     }
 
@@ -69,20 +70,19 @@ class App {
     getScreenSize () {
         this.sizes.width = window.innerWidth
         this.sizes.height = window.innerHeight
-
-        this.renderer.setSize(this.sizes.width, this.sizes.height)
     }
 
     onResize() {
-
-    }
+        this.getScreenSize()
+        this.renderer.setSize(this.sizes.width,this.sizes.height)
+    }   
 
     addListeners() {
         window.addEventListener("mousemove", (e) => {
             this.cursor.x = ( e.clientX / this.sizes.width ) - 0.5
             this.cursor.y = ( e.clientY / this.sizes.height ) - 0.5
 
-            console.log(this.cursor);
+            // console.log(this.cursor);
         })
 
         window.addEventListener("resize", this.onResize.bind(this))
