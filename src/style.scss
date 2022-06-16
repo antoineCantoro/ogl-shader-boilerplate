@@ -36,6 +36,8 @@ canvas {
     
     width: 100%;
     text-align: center;
+
+    mix-blend-mode: exclusion;
 }
 h1 {
     line-height: 0.9;
@@ -45,6 +47,5 @@ h1 {
 
 span {
     display: block;
-    color: #eee;
     font-weight: 400;
 }

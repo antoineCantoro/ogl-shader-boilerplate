@@ -44,6 +44,19 @@ float cnoise(vec2 P){
     return 2.3 * n_xy;
 }
 
+
+// float circle(in vec2 _st, in float _radius){
+//     vec2 dist = _st-vec2(0.5);
+// 	return 1.-smoothstep(_radius-(_radius*0.01),
+//                          _radius+(_radius*0.01),
+//                          dot(dist,dist)*4.0);
+// }
+
+float circle(in vec2 _st, in float _radius, in float blurriness){
+	vec2 dist = _st;
+	return 1.-smoothstep(_radius-(_radius*blurriness), _radius+(_radius*blurriness), dot(dist,dist)*4.0);
+}
+
 float random (vec2 st) {
     return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
 }
@@ -52,11 +65,29 @@ float random (vec2 st) {
 
 void main() {
 
-    vec2 uv = vUv * 10.0;
-    float noise = cnoise(uv);
-    float noise2 = cnoise(uv + 0.5);
+    vec2 uv = vUv;
+
+    vec2 mousedUv = vec2( uv.x - (uCursorX * 0.5) - 0.5, uv.y + (uCursorY * 0.5) - 0.5 );
+
+    float noise = cnoise( vec2(
+        uv.x * (cos(uv.x) - 0.5) * 50.0 - uTime * 2.5, 
+        uv.y * (cos(uv.y) - 0.5) * 50.0 - uTime * 3.5) 
+    );
+
+    float myCircle = circle(mousedUv , 0.25, 0.25);
+
+    // myCircle += noise * 0.8;
+
+    noise *= myCircle;
+
+    // noise -= sin(uTime);
+
+    float finalMask = smoothstep(0.2, 0.5, noise + myCircle);
+
     // noise = step(sin(uTime), noise);
-    noise = step(sin(uTime), noise2);
-    vec3 color = vec3(noise, noise , noise);
+    // noise = step(myCircle, sin(uTime));
+
+    vec3 color = vec3(finalMask + mousedUv.y * 0.2, finalMask, finalMask);
+
     gl_FragColor = vec4(color, 1.0);
 }
