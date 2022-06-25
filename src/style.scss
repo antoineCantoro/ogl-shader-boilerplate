@@ -37,12 +37,15 @@ canvas {
     width: 100%;
     text-align: center;
 
-    mix-blend-mode: exclusion;
+    // mix-blend-mode: exclusion;
+    
 }
 h1 {
     line-height: 0.9;
-    font-size: 7.5vw;
     font-weight: 400;
+    // font-size: 7.5vw;
+
+    font-size: 10vw;
 }
 
 span {
