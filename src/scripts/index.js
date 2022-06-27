@@ -1,7 +1,7 @@
 import { Renderer, Geometry, Program, Mesh } from 'ogl';
 
-import fragment from '../shaders/06/fragment.glsl'
-import vertex from '../shaders/06/vertex.glsl'
+import fragment from '../shaders/07/fragment.glsl'
+import vertex from '../shaders/07/vertex.glsl'
 
 
 class App {
