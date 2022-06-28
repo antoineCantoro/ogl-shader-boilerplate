@@ -1,7 +1,7 @@
 import { Renderer, Geometry, Program, Mesh, Texture, TextureLoader } from 'ogl';
 
-import fragment from '../shaders/07/fragment.glsl'
-import vertex from '../shaders/07/vertex.glsl'
+import fragment from '../shaders/12/fragment.glsl'
+import vertex from '../shaders/12/vertex.glsl'
 
 
 import image01 from "../images/01.jpg"
