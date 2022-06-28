@@ -98,7 +98,7 @@ void main() {
     // perlin = abs(smoothstep(0.1, 0.8, perlin));
     perlin = smoothstep(0.2, 0.8, perlin);
     // perlin = perlin;
-    float noise = random(uv * uTime) * 0.2;
+    float noise = random(uv * uTime) * 0.15;
     gl_FragColor = vec4(perlin + noise, perlin + noise, perlin + noise, 1.0);
 
 
