@@ -1,7 +1,11 @@
-import { Renderer, Geometry, Program, Mesh } from 'ogl';
+import { Renderer, Geometry, Program, Mesh, Texture, TextureLoader } from 'ogl';
 
 import fragment from '../shaders/07/fragment.glsl'
 import vertex from '../shaders/07/vertex.glsl'
+
+
+import image01 from "../images/01.jpg"
+import image02 from "../images/02.jpg"
 
 
 class App {
@@ -13,6 +17,7 @@ class App {
         this.cursor.y = 0
 
         this.createRenderer()
+        this.createImageTexture()
         this.createMesh()
         this.addListeners()
         this.getScreenSize()
@@ -46,7 +51,9 @@ class App {
             uniforms: {
                 uTime: { value: 0 },
                 uCursorX: { value: 0 },
-                uCursorY: { value: 0 }
+                uCursorY: { value: 0 },
+                textureMap01: { value: this.imageTexture01 },
+                textureMap02: { value: this.imageTexture02 }
             },
         })
         
@@ -56,6 +63,21 @@ class App {
         })
     }
 
+    createImageTexture() {
+        // Upload empty texture while source loading
+        this.imageTexture01 = new Texture(this.gl);
+        this.imageTexture02 = new Texture(this.gl);
+
+        // update image value with source once loaded
+        const img01 = new Image();
+        img01.src = image01;
+        img01.onload = () => (this.imageTexture01.image = img01);
+        
+        const img02 = new Image()
+        img02.src = image02
+        img02.onload = () => (this.imageTexture02.image = img02)
+    }
+
     
     update(time) {
         requestAnimationFrame(this.update.bind(this))
@@ -63,6 +85,8 @@ class App {
         this.program.uniforms.uTime.value = time * 0.001
         this.program.uniforms.uCursorX.value = this.cursor.x
         this.program.uniforms.uCursorY.value = this.cursor.y
+
+        // console.log(this.program.uniforms);
         
         this.renderer.render({ scene: this.mesh })
     }
