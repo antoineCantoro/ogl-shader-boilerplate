@@ -77,13 +77,13 @@ void main() {
 
     float mixedPerlin = mix(perlinA, perlinB, 1.0);
 
-    float noise = random(uv * uTime) * 0.25; 
+    // float noise = random(uv * uTime) * 0.25; 
 
-    perlinB -= smoothstep(0.1, 0.6, noise) - 0.2;
+    // perlinB -= smoothstep(0.1, 0.6, noise) - 0.25;
 
     vec3 color = cosPalette(perlinB, brightness, contrast, oscilation, phase);
 
-    // color = step(0.8, color);
+    color = step(0.8, color);
 
 
     gl_FragColor = vec4( 1.0 - color, 1.0);
