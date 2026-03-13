@@ -3,26 +3,26 @@ import { Renderer, Geometry, Program, Box, Mesh, Texture, TextureLoader, Camera,
 // import fragment from '../shaders/base/fragment.glsl'
 // import fragment from '../shaders/base/fragment.glsl?raw'
 // import fragment from '../shaders/base/fragment.glsl' with { type: "text" }
-import fragment from '../shaders/base/fragment.js'
+import fragment from '../shaders/base/fragment.ts'
 
 // import vertex from '../shaders/base/vertex.glsl'
-import vertex from '../shaders/base/vertex.js'
+import vertex from '../shaders/base/vertex.ts'
 
 import image01 from "../images/01.jpg"
 import image02 from "../images/02.jpg"
 
 class App {
-    private renderer: Renderer
-    private gl: WebGL2RenderingContext
-    private camera: any
-    private geometry: Geometry
-    private program: Program
-    private mesh: Mesh
-    private scene: Transform
-    private imageTexture01: Texture
-    private imageTexture02: Texture
-    private cursor: { x: number; y: number }
-    private sizes: { width: number; height: number }
+    private renderer!: Renderer
+    private gl!: OGLRenderingContext
+    private camera!: Camera
+    private geometry!: Geometry
+    private program!: Program
+    private mesh!: Mesh
+    private scene!: Transform
+    private imageTexture01!: Texture
+    private imageTexture02!: Texture
+    private cursor!: AppCursor
+    private sizes!: AppScreen
 
     constructor() {
         this.cursor = {
@@ -53,10 +53,6 @@ class App {
 
         this.gl = this.renderer.gl
         document.body.appendChild(this.gl.canvas)
-    }
-
-    createCamera() {
-        this.camera = null
     }
 
     createScene() {
@@ -133,7 +129,7 @@ class App {
     }   
 
     addListeners() {
-        window.addEventListener("mousemove", (e) => {
+        window.addEventListener("mousemove", (e: MouseEvent) => {
             this.cursor.x = ( e.clientX / this.sizes.width ) - 0.5
             this.cursor.y = ( e.clientY / this.sizes.height ) - 0.5
 
@@ -142,7 +138,6 @@ class App {
 
         window.addEventListener("resize", this.onResize.bind(this))
     }
-
 }
 
 new App()
