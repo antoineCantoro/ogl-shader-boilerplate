@@ -23,5 +23,8 @@
   },
   "dependencies": {
     "ogl": "^1.0.11"
+  },
+  "scripts": {
+    "dev": "bun index.ts"
   }
 }
