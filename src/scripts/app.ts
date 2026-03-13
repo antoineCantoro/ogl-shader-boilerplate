@@ -1,3 +1,4 @@
+import { debounce } from './utils.ts'
 import { Renderer, Geometry, Program, Box, Mesh, Texture, TextureLoader, Camera, Transform } from 'ogl'
 
 // import fragment from '../shaders/base/fragment.glsl'
@@ -136,7 +137,7 @@ class App {
             console.log(this.cursor);
         })
 
-        window.addEventListener("resize", this.onResize.bind(this))
+        window.addEventListener("resize", debounce(this.onResize.bind(this), 50))
     }
 }
 
