@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    // Environment setup & latest features
+    "lib": ["ESNext", "DOM"],
+    "target": "ESNext",
+    "module": "Preserve",
+    "moduleDetection": "force",
+    // "allowJs": true,
+    // "typeRoots": ["./types", "./node_modules/@types"],
+    "types": [
+      "bun-plugin-glsl/ext",
+    ],
+
+    "outDir": "build",
+
+    // Bundler mode
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "noEmitOnError": true,
+
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false,
+  },
+  "includes" : [
+		"src/types/*/**" // Ajoute tous les fichier de typages présent dans le dossier "types"
+	]
+}

@@ -1,1 +1,5 @@
-# ogl-shader-boilerplate
+# OGL Shader Boilerplate 
+
+## Prerequire
+- Bun
+- Typescript
